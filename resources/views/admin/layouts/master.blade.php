@@ -104,7 +104,6 @@
     <!-- Dynamioc Delete Edit -->
     <script>
         $(document).ready(function() {
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -137,8 +136,9 @@
                                     Swal.fire(
                                         'Deleted!',
                                         data.message
-                                    );
-                                    window.location.reload();
+                                    )then(() => {
+                                        window.location.reload();
+                                    });
                                 } else if (data.status == 'error') {
                                     Swal.fire(
                                         'Cant Delete!',

@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Slider</h4>
+                            <h4>Edit Category</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.category.update', $category->id) }}" method="POST"
@@ -25,29 +25,29 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label>Preview</label>
-                                    <br>
-                                    <img width="200" src="{{ asset($category->banner) }}" alt="">
+                                    <label>Icon</label>
+                                    <div class="">
+                                        <button class="btn btn-primary" data-selected-class="btn-danger"
+                                            data-unselected-class="btn-info" role="iconpicker" name="icon"
+                                            data-icon="{{ $category->icon }}"></button>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="banner">Banner</label>
-                                    <input type="file" name="banner" id="banner" class="form-control">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control"
+                                        value="{{ $category->name }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="type">Type</label>
-                                    <input type="text" name="type" id="type" class="form-control"
-                                        value="{{ $category->type }}">
-                                </div>
-                                <div class="form-group">
-                                <div class="form-group">
-                                    <label for="">Status</label>
-                                    <select name="status" class="form-control" id="">
-                                        <option {{ $slider->status === 1 ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $slider->status === 0 ? 'selected' : '' }} value="0">Inactive
-                                        </option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+                                        <select name="status" class="form-control" id="">
+                                            <option {{ $category->status === 1 ? 'selected' : '' }} value="1">Active
+                                            </option>
+                                            <option {{ $category->status === 0 ? 'selected' : '' }} value="0">Inactive
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>

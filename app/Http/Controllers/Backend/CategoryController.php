@@ -74,7 +74,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200', 'unique:categories,name,' . $id],
+            'icon' => ['required', 'not_in:empty'],
+            'status' => ['required'],
+        ]);
+
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->slug = Str::slug($request->name);
+        $category->status = $request->status;
+        $category->save();
+
+        toastr()->success('Category updated successfully!');
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -82,6 +98,18 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return response(['status' => 'success', 'message' => 'Deledted successfully!']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+
+        return response(['message' => 'Status updated successfully!']);
     }
 }

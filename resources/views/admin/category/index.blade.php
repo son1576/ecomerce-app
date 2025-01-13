@@ -36,4 +36,36 @@
 
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+
+    <script>
+        $(document).ready(function () {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('body').on('click', '.change-status', function() {
+
+                let isChecked = $(this).is(':checked');
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('admin.category.change-status') }}",
+                    method: 'PUT',
+                    data: {
+                        status: isChecked,
+                        id: id
+                    },
+                    success: function(data) {
+                        toastr.success(data.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

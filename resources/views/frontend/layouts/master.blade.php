@@ -134,20 +134,20 @@
     <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.countup.min.js') }}"></script>
     <!--add row js-->
-    <script src="{{ asset('frontend/js/add_row_custon.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/add_row_custon.js') }}"></script> --}}
     <!--multiple-image-video js-->
-    <script src="{{ asset('frontend/js/multiple-image-video.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/multiple-image-video.js') }}"></script> --}}
     <!--sticky sidebar js-->
-    <script src="{{ asset('frontend/js/sticky_sidebar.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/sticky_sidebar.js') }}"></script> --}}
     <!--price ranger js-->
-    <script src="{{ asset('frontend/js/ranger_jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/ranger_slider.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/ranger_jquery-ui.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('frontend/js/ranger_slider.js') }}"></script> --}}
     <!--isotope js-->
-    <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script> --}}
     <!--venobox js-->
-    <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/venobox.min.js') }}"></script> --}}
     <!--classycountdown js-->
-    <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script> --}}
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
