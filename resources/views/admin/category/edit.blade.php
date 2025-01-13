@@ -20,14 +20,14 @@
                             <h4>Edit Slider</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST"
+                            <form action="{{ route('admin.category.update', $category->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Preview</label>
                                     <br>
-                                    <img width="200" src="{{ asset($slider->banner) }}" alt="">
+                                    <img width="200" src="{{ asset($category->banner) }}" alt="">
                                 </div>
                                 <div class="form-group">
                                     <label for="banner">Banner</label>
@@ -36,28 +36,9 @@
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <input type="text" name="type" id="type" class="form-control"
-                                        value="{{ $slider->type }}">
+                                        value="{{ $category->type }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title" id="title" class="form-control"
-                                        value="{{ $slider->title }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="price">Starting Price</label>
-                                    <input type="text" name="starting_price" id="starting_price" class="form-control"
-                                        value="{{ $slider->starting_price }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Button URL</label>
-                                    <input type="text" name="btn_url" id="btn_url" class="form-control"
-                                        value="{{ $slider->btn_url }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Serial</label>
-                                    <input type="text" name="serial" class="form-control" id=""
-                                        value="{{ $slider->serial }}">
-                                </div>
                                 <div class="form-group">
                                     <label for="">Status</label>
                                     <select name="status" class="form-control" id="">

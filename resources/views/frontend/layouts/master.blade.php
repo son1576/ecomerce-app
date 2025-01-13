@@ -127,7 +127,7 @@
     <!--simplyCountdown js-->
     <script src="{{ asset('frontend/js/simplyCountdown.js') }}"></script>
     <!--product zoomer js-->
-    <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script> --}}
     <!--nice-number js-->
     <script src="{{ asset('frontend/js/jquery.nice-number.min.js') }}"></script>
     <!--counter js-->

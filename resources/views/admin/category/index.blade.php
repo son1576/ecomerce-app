@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>Category</h1>
         </div>
 
         <div class="section-body">
@@ -12,9 +12,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Simple Table</h4>
+                            <h4>All Categories</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.slider.create') }}" class="btn btn-primary"><svg width="16"
+                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary"><svg width="16"
                                         height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                         <path

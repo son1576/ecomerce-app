@@ -13,11 +13,40 @@ trait ImageUploadsTrait
 
       $image = $request->{$inputName};
       $ext = $image->getClientOriginalExtension();
-      $image_name = 'media_'.uniqid() . '_' . $ext;
+      $image_name = 'media_' . uniqid() . '.' . $ext;
 
       $image->move(public_path($path), $image_name);
 
       return $path . '/' . $image_name;
+    }
+  }
+
+  public function updateImage(Request $request, $inputName, $path, $oldPath = null)
+  {
+    if ($request->hasFile($inputName)) {
+
+      if (File::exists(public_path($oldPath))) {
+
+        File::delete(public_path($oldPath));
+      }
+
+      $image = $request->$inputName;
+
+      $ext = $image->getClientOriginalExtension();
+
+      $imageName = 'media_' . uniqid() . '.' . $ext;
+
+      $image->move(public_path($path), $imageName);
+
+      $path = "/uploads/$imageName";
+
+      return $path;
+    } else return $oldPath;
+  }
+
+  public function deleteImage(string $path) {
+    if (File::exists(public_path($path))) {
+      File::delete(public_path($path));
     }
   }
 }
