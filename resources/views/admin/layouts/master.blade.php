@@ -109,9 +109,12 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            console.log('ready');
 
             $('body').on('click', '.delete-item', function(event) {
                 event.preventDefault();
+
+                console.log('clicked');
 
                 let deleteUrl = $(this).attr('href');
 
@@ -136,7 +139,7 @@
                                     Swal.fire(
                                         'Deleted!',
                                         data.message
-                                    )then(() => {
+                                    ).then(() => {
                                         window.location.reload();
                                     });
                                 } else if (data.status == 'error') {
