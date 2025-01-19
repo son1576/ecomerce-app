@@ -13,11 +13,20 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
+            $table->text('banner');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('address');
+            $table->text('description');
+            $table->text('fb_link')->nullable();
+            $table->text('tw_link')->nullable();
+            $table->text('insta_link')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
-
-    /**
+    
+   /**
      * Reverse the migrations.
      */
     public function down(): void

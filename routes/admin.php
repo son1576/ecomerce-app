@@ -40,4 +40,4 @@ Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->nam
 Route::resource('brand', BrandController::class);
 
 /** Vendor Proifile Route */
-Route::resource('vendor/profile', AdminVendorProfile::class);
+Route::resource('vendor-profile', AdminVendorProfile::class);

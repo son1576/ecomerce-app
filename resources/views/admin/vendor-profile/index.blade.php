@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>Vendor Profile</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
@@ -17,43 +17,55 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Slider</h4>
+                            <h4>Update Vendor Profile</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
-                              @csrf  
-                              <div class="form-group">
+                            <form action="{{ route('admin.vendor-profile.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="banner">Preview</label>
+                                    <img width="200" src="{{asset($profile->banner)}}" alt="">
+                                </div>
+                                <div class="form-group">
                                     <label for="banner">Banner</label>
-                                    <input type="file" name="banner" id="banner" class="form-control" value="{{ old('banner') }}">
+                                    <input type="file" name="banner" id="banner" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="type">Type</label>
-                                    <input type="text" name="type" id="type" class="form-control" value="{{ old('type') }}">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" name="phone" id="phone" class="form-control"
+                                        value="{{ $profile->phone }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control"
+                                        value="{{ $profile->email }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Starting Price</label>
-                                    <input type="text" name="starting_price" id="starting_price" class="form-control" value="{{ old('starting_price') }}">
+                                    <label for="address">Address</label>
+                                    <input type="text" name="address" id="address" class="form-control"
+                                        value="{{ $profile->address }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Button URL</label>
-                                    <input type="text" name="btn_url" id="btn_url" class="form-control" value="{{ old('btn_url') }}">
+                                    <label for="">Description</label>
+                                    <textarea class="summernote" name="description" >{{ $profile->description }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Serial</label>
-                                    <input type="text" name="serial" class="form-control" id="" value="{{ old('serial') }}">
+                                    <label for="">Facebook</label>
+                                    <input type="text" name="fb_link" class="form-control" id=""
+                                        value="{{ $profile->fb_link }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Status</label>
-                                    <select name="status" class="form-control" id="" value="{{ old('status') }}">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
+                                    <label for="">X</label>
+                                    <input type="text" name="tw_link" class="form-control" id=""
+                                        value="{{ $profile->tw_link }}">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <div class="form-group">
+                                    <label for="">Instagram</label>
+                                    <input type="text" name="insta_link" class="form-control" id=""
+                                        value="{{ $profile->insta_link }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>
