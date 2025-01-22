@@ -18,11 +18,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.category.store') }}" method="POST">
+                            <form action="{{ route('admin.products-variant.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="product_id" class="form-control" value="{{ request()->product }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Status</label>
