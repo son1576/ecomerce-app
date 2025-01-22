@@ -12,29 +12,29 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Variant</h4>
+                            <h4>Update Variant</h4>
                             <div class="card-header-action">
 
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.products-variant.store') }}" method="POST">
+                            <form action="{{ route('admin.products-variant.update', $variant->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" name="product_id" class="form-control" value="{{ request()->product }}">
+                                    <input type="text" name="name" id="name" class="form-control"
+                                        value="{{ $variant->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Status</label>
-                                    <select name="status" class="form-control" id="" value="{{ old('status') }}">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
+                                    <select name="status" class="form-control" id="">
+                                        <option {{ $variant->status == 1 ? 'selected' : '' }} value="1">Active</option>
+                                        <option {{ $variant->status == 0 ? 'selected' : '' }} value="0">Inactive
+                                        </option>
                                     </select>
                                 </div>
-                                <button class="btn btn-primary" type="submit">Create</button>
+                                <button class="btn btn-primary" type="submit">Update</button>
                             </form>
                         </div>
                     </div>

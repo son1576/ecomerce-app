@@ -62,7 +62,8 @@ class ProductVariantController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $variant = ProductVariant::findOrfail($id);
+        return view('admin.product.variant.edit', compact('variant'));
     }
 
     /**
@@ -70,7 +71,19 @@ class ProductVariantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'status' => ['required']
+        ]);
+
+        $varinat = ProductVariant::findOrFail($id);
+        $varinat->name = $request->name;
+        $varinat->status = $request->status;
+        $varinat->save();
+
+        toastr('Updated Successfully!', 'success', 'success');
+
+        return redirect()->route('admin.products-variant.index', ['product' => $varinat->product_id]);
     }
 
     /**
@@ -78,6 +91,23 @@ class ProductVariantController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $varinat = ProductVariant::findOrFail($id);
+        // $variantItemCheck = ProductVariantItem::where('product_variant_id', $varinat->id)->count();
+        // if($variantItemCheck > 0){
+        //     return response(['status' => 'error', 'message' => 'This variant contain variant items in it delete the variant items first for delete this variant!']);
+        // }
+        $varinat->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $varinat = ProductVariant::findOrFail($request->id);
+        $varinat->status = $request->status == 'true' ? 1 : 0;
+        $varinat->save();
+
+        return response(['message' => 'Status has been updated!']);
     }
 }
