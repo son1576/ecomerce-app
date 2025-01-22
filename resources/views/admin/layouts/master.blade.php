@@ -116,8 +116,6 @@
             $('body').on('click', '.delete-item', function(event) {
                 event.preventDefault();
 
-                console.log('clicked');
-
                 let deleteUrl = $(this).attr('href');
 
                 Swal.fire({
@@ -151,7 +149,6 @@
                                         'error'
                                     );
                                 }
-
                             },
 
                             error: function(xhr, status, error) {

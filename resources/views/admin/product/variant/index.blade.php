@@ -3,7 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Brand</h1>
+            <h1>Product Variant</h1>
+        </div>
+
+        <div class="mb-3">
+            <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
         </div>
 
         <div class="section-body">
@@ -12,9 +16,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Brands</h4>
+                            <h4>All Product Variant</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary"><svg width="16"
+                                <a href="{{ route('admin.products-variant.create') }}" class="btn btn-primary"><svg width="16"
                                         height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                         <path
@@ -36,36 +40,4 @@
 
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-
-    <script>
-        $(document).ready(function () {
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $('body').on('click', '.change-status', function() {
-
-                let isChecked = $(this).is(':checked');
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.brand.change-status') }}",
-                    method: 'PUT',
-                    data: {
-                        status: isChecked,
-                        id: id
-                    },
-                    success: function(data) {
-                        toastr.success(data.message);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('Error:', error);
-                    }
-                });
-            });
-        });
-    </script>
 @endpush

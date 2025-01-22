@@ -115,7 +115,7 @@ class BrandController extends Controller
      */
     public function changeStatus(Request $request) {
         $brand = Brand::findOrFail($request->id);
-        $brand->status = $request->status == 1 ? 0 : 1;
+        $brand->status = $request->status == 'true' ? 1 : 0;
         $brand->save();
 
         return response(['message' => 'Status has been updated']);

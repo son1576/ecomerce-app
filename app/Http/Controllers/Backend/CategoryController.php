@@ -113,6 +113,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($request->id);
         $category->status = $request->status == 'true' ? 1 : 0;
+        
         $category->save();
 
         return response(['message' => 'Status updated successfully!']);

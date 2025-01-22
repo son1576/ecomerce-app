@@ -21,6 +21,23 @@ trait ImageUploadsTrait
     }
   }
 
+  public function uploadMultiImage(Request $request, $inputName, $path)
+  {
+    if ($request->hasFile($inputName)) {
+
+      $images = $request->{$inputName};
+      foreach ($images as $image) {
+        $ext = $image->getClientOriginalExtension();
+        $image_name = 'media_' . uniqid() . '.' . $ext;
+
+        $image->move(public_path($path), $image_name);
+
+        $imagePaths[] = $path . '/' . $image_name;
+      }
+      return $imagePaths;
+    }
+  }
+
   public function updateImage(Request $request, $inputName, $path, $oldPath = null)
   {
     if ($request->hasFile($inputName)) {
@@ -44,7 +61,8 @@ trait ImageUploadsTrait
     } else return $oldPath;
   }
 
-  public function deleteImage(string $path) {
+  public function deleteImage(string $path)
+  {
     if (File::exists(public_path($path))) {
       File::delete(public_path($path));
     }
