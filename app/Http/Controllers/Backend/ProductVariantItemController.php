@@ -90,7 +90,7 @@ class ProductVariantItemController extends Controller
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    public function chageStatus(Request $request)
+    public function changeStatus(Request $request)
     {
         $variantItem = ProductVariantItem::findOrFail($request->id);
         $variantItem->status = $request->status == 'true' ? 1 : 0;

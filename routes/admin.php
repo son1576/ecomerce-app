@@ -50,6 +50,7 @@ Route::resource('vendor-profile', AdminVendorProfile::class);
 /** Product Route */
 Route::get('product/get-subcategories', [ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
 Route::get('product/get-child-categories', [ProductController::class, 'getChildCategories'])->name('product.get-child-categories');
+Route::put('product/change-status', [ProductController::class, 'changeStatus'])->name('product.change-status');
 Route::resource('products', ProductController::class);
 /** Product Gallery Route */
 Route::resource('products-image-gallery', ProductImageGalleryController::class);
@@ -66,4 +67,4 @@ Route::put('products-variant-item-update/{variantItemId}', [ProductVariantItemCo
 
 Route::delete('products-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])->name('products-variant-item.destroy');
 
-Route::put('products-variant-item-status', [ProductVariantItemController::class, 'chageStatus'])->name('products-variant-item.chages-status');
+Route::put('products-variant-item-status', [ProductVariantItemController::class, 'changeStatus'])->name('products-variant-item.changes-status');
