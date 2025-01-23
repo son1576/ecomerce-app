@@ -38,34 +38,27 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
     <script>
-        $(document).ready(function() {
+      $(document).ready(function(){
+          $('body').on('click', '.change-status', function(){
+              let isChecked = $(this).is(':checked');
+              let id = $(this).data('id');
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+              $.ajax({
+                  url: "{{route('admin.products-variant-item.chages-status')}}",
+                  method: 'PUT',
+                  data: {
+                      status: isChecked,
+                      id: id
+                  },
+                  success: function(data){
+                      toastr.success(data.message)
+                  },
+                  error: function(xhr, status, error){
+                      console.log(error);
+                  }
+              })
 
-            $('body').on('click', '.change-status', function() {
-
-                let isChecked = $(this).is(':checked');
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.products-variant.change-status') }}",
-                    method: 'PUT',
-                    data: {
-                        status: isChecked,
-                        id: id
-                    },
-                    success: function(data) {
-                        toastr.success(data.message);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('Error:', error);
-                    }
-                });
-            });
-        });
-    </script>
+          })
+      })
+  </script>
 @endpush
