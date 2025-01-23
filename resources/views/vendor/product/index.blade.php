@@ -2,8 +2,8 @@
 
 @section('content')
     <!--=============================
-                                DASHBOARD START
-                              ==============================-->
+                                    DASHBOARD START
+                                  ==============================-->
     <section id="wsus__dashboard">
         <div class="container-fluid">
             @include('vendor.layouts.sidebar')
@@ -35,8 +35,8 @@
         </div>
     </section>
     <!--=============================
-                                DASHBOARD START
-                              ==============================-->
+                                    DASHBOARD START
+                                  ==============================-->
 @endsection
 
 @push('scripts')
@@ -49,7 +49,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.product.change-status') }}",
+                    url: "{{ route('vendor.product.change-status') }}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
