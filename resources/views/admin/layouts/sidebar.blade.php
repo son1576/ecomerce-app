@@ -63,7 +63,10 @@
                     <span>Ecommerce</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.flash-sale.index') }}">Flash Sale</a></li>
+                    <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
                             href="{{ route('admin.vendor-profile.index') }}">Vendor Profile</a></li>
+
                 </ul>
             </li>
             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
