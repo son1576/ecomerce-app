@@ -89,8 +89,8 @@
                 </ul>
             </li> --}}
 
-            {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
-                        Page</span></a></li> --}}
+            <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i>
+                    <span>Settings</span></a></li>
 
         </ul>
     </aside>
