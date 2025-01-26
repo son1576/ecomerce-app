@@ -9558,3 +9558,7 @@ a:not([href]):not([class]):hover {
   -ms-transition: all linear 0.3s ease;
   -o-transition: all linear 0.3s ease;
 }
+
+#sticky_pro_zoom_change_css {
+  z-index: 9999 !important;
+}

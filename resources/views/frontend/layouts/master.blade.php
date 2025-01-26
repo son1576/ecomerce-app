@@ -127,14 +127,14 @@
     <!--simplyCountdown js-->
     <script src="{{ asset('frontend/js/simplyCountdown.js') }}"></script>
     <!--product zoomer js-->
-    {{-- <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script> --}}
+    <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
     <!--nice-number js-->
     <script src="{{ asset('frontend/js/jquery.nice-number.min.js') }}"></script>
     <!--counter js-->
     <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.countup.min.js') }}"></script>
     <!--add row js-->
-    <script src="{{ asset('frontend/js/add_row_custon.js') }}"></script> --}}
+    <script src="{{ asset('frontend/js/add_row_custon.js') }}"></script>
     <!--multiple-image-video js-->
     <script src="{{ asset('frontend/js/multiple-image-video.js') }}"></script>
     <!--sticky sidebar js-->
@@ -147,7 +147,7 @@
     <!--venobox js-->
     <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
     <!--classycountdown js-->
-    {{-- {{-- <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script> --}}
+    <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script> 
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>

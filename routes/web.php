@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Frontend\FlashSaleController as FrontendFlashSaleController;
+use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
@@ -43,4 +44,9 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 });
 
 Route::get('flash-sale', [FrontendFlashSaleController::class, 'index'])->name('flash-sale');
+
+/** Product route */
+Route::get('products', [FrontendProductController::class, 'productsIndex'])->name('products.index');
+Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
 
