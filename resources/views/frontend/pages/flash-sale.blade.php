@@ -2,8 +2,8 @@
 
 @section('content')
     <!--============================
-                            BREADCRUMB START
-                        ==============================-->
+                                    BREADCRUMB START
+                                ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -11,7 +11,7 @@
                     <div class="col-12">
                         <h4>offer detaila</h4>
                         <ul>
-                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="javascripts">Flash Sale</a></li>
                         </ul>
                     </div>
@@ -20,13 +20,13 @@
         </div>
     </section>
     <!--============================
-                          BREADCRUMB END
-                      ==============================-->
+                                  BREADCRUMB END
+                              ==============================-->
 
 
     <!--============================
-                          DAILY DEALS DETAILS START
-                      ==============================-->
+                                  DAILY DEALS DETAILS START
+                              ==============================-->
     <section id="wsus__daily_deals">
         <div class="container">
             <div class="wsus__offer_details_area">
@@ -105,13 +105,15 @@
                                         <i class="fas fa-star-half-alt"></i>
                                         <span>(133 review)</span>
                                     </p>
-                                    <a class="wsus__pro_name" href="#">{{ $product->name }}</a>
+                                    <a class="wsus__pro_name"
+                                        href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
                                     @if (checkDiscount($product))
-                                        <p class="wsus__price">${{ $product->offer_price }}
-                                            <del>${{ $product->price }}</del>
+                                        <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                            <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                                         </p>
                                     @else
-                                        <p class="wsus__price">${{ $product->price }}<del></del></p>
+                                        <p class="wsus__price">
+                                            {{ $settings->currency_icon }}{{ $product->price }}<del></del></p>
                                     @endif
                                     <a class="add_cart" href="#">add to cart</a>
                                 </div>
@@ -128,8 +130,8 @@
         </div>
     </section>
     <!--============================
-                          DAILY DEALS DETAILS END
-                      ==============================-->
+                                  DAILY DEALS DETAILS END
+                              ==============================-->
 @endsection
 
 @push('scripts')
