@@ -1,9 +1,13 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $settings->site_name }} | Login
+@endsection
+
 @section('content')
     <!--============================
-                                                             BREADCRUMB START
-                                                        ==============================-->
+                                                                 BREADCRUMB START
+                                                            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -20,13 +24,13 @@
         </div>
     </section>
     <!--============================
-                                                            BREADCRUMB END
-                                                        ==============================-->
+                                                                BREADCRUMB END
+                                                            ==============================-->
 
 
     <!--============================
-                                                           LOGIN/REGISTER PAGE START
-                                                        ==============================-->
+                                                               LOGIN/REGISTER PAGE START
+                                                            ==============================-->
     <section id="wsus__login_register">
         <div class="container">
             <div class="row">
@@ -115,6 +119,6 @@
         </div>
     </section>
     <!--============================
-                                                           LOGIN/REGISTER PAGE END
-                                                        ==============================-->
+                                                               LOGIN/REGISTER PAGE END
+                                                            ==============================-->
 @endsection
