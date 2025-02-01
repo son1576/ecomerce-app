@@ -108,6 +108,10 @@
     <!-- Dynamioc Delete Edit -->
     <script>
         $(document).ready(function() {
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            console.log(csrfToken);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
