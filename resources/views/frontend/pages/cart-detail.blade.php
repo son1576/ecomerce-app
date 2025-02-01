@@ -6,8 +6,8 @@
 
 @section('content')
     <!--============================
-                                                        BREADCRUMB START
-                                                    ==============================-->
+                                                            BREADCRUMB START
+                                                        ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -25,13 +25,13 @@
         </div>
     </section>
     <!--============================
-                                                      BREADCRUMB END
-                                                  ==============================-->
+                                                          BREADCRUMB END
+                                                      ==============================-->
 
 
     <!--============================
-                                                      CART VIEW PAGE START
-                                                  ==============================-->
+                                                          CART VIEW PAGE START
+                                                      ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -62,7 +62,7 @@
                                         </th>
 
                                         <th class="wsus__pro_icon">
-                                            <a href="#" class="common_btn">clear cart</a>
+                                            <button class="common_btn clear_cart">clear cart</button>
                                         </th>
                                     </tr>
 
@@ -162,8 +162,8 @@
         </div>
     </section>
     <!--============================
-                                                        CART VIEW PAGE END
-                                                  ==============================-->
+                                                            CART VIEW PAGE END
+                                                      ==============================-->
 @endsection
 
 @push('scripts')
@@ -251,6 +251,36 @@
                     }
                 })
 
+            })
+
+            // clear cart
+            $('.clear_cart').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This action will clear your cart!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, clear it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: "{{ route('clear.cart') }}",
+                            type: 'GET',
+                            success: function(data) {
+                                if (data.status === 'success') {
+                                    window.location.reload();
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
+                    }
+                })
             })
         })
     </script>
