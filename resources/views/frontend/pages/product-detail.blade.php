@@ -272,8 +272,6 @@
                                 </ul>
                             </form>
 
-
-                            <p class="brand_model"><span>model :</span> 12345670</p>
                             <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
 
 
@@ -783,8 +781,8 @@
                     url: "{{ route('add-to-cart') }}",
                     success: function(data) {
                         if (data.status) {
-                            // toastr.success(data.message);
-                            // $('#cart-count').text(data.cartCount);
+                            toastr.success(data.message);
+                            getCartCount();
                         } else {
                             toastr.error(data.message);
                         }
@@ -794,6 +792,19 @@
                     }
                 })
             })
+
+            function getCartCount() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-count') }}",
+                    success: function(data) {
+                        $('#cart-count').text(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
         })
     </script>
 @endpush

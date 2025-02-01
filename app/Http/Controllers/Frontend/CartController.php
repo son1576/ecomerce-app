@@ -114,4 +114,18 @@ class CartController extends Controller
 
         return response(['status' => 'success', 'message' => 'Cart cleared successfully']);
     }
+
+    /** Remove product form cart */
+    public function removeProduct($rowId)
+    {
+        Cart::remove($rowId);
+        toastr('Product removed succesfully!', 'success', 'Success');
+        return redirect()->back();
+    }
+
+    /** Get cart count */
+    public function getCartCount()
+    {
+        return Cart::content()->count();
+    }
 }

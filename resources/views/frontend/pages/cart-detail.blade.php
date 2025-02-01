@@ -102,10 +102,19 @@
                                             </td>
 
                                             <td class="wsus__pro_icon">
-                                                <a href="#"><i class="far fa-times"></i></a>
+                                              <a href="{{route('cart.remove-product', $item->rowId)}}"><i class="far fa-times"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
+
+                                    @if (count($cartItems) === 0)
+                                        <tr class="d-flex" >
+                                            <td class="wsus__pro_icon" rowspan="2" style="width:100%">
+                                                Cart is empty!
+                                            </td>
+                                        </tr>
+
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
