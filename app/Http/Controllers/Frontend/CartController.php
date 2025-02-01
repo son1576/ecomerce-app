@@ -10,6 +10,25 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    /** Show cart page  */
+    public function cartDetails()
+    {
+
+        $cartItems = Cart::content();
+
+        // if(count($cartItems) === 0){
+        //     Session::forget('coupon');
+        //     toastr('Please add some products in your cart for view the cart page', 'warning', 'Cart is empty!');
+        //     return redirect()->route('home');
+        // }
+
+        // $cartpage_banner_section = Adverisement::where('key', 'cartpage_banner_section')->first();
+        // $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
+
+        return view('frontend.pages.cart-detail', compact('cartItems'));
+    }
+
     /** Add item to cart */
     public function addToCart(Request $request)
     {
