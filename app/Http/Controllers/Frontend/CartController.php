@@ -79,4 +79,31 @@ class CartController extends Controller
         
         return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
     }
+
+    /** Update product quantity */
+    public function updateProductQty(Request $request)
+    {
+        $productId = Cart::get($request->rowId)->id;
+        $product = Product::findOrFail($productId);
+
+        // check product quantity
+        if($product->qty === 0){
+            return response(['status' => 'error', 'message' => 'Product stock out']);
+        }elseif($product->qty < $request->qty){
+            return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
+        }
+
+        Cart::update($request->rowId, $request->quantity);
+        $productTotal = $this->getProductTotal($request->rowId);
+
+        return response(['status' => 'success', 'message' => 'Product Quantity Updated!', 'product_total' => $productTotal]);
+    }
+
+    /** get product total */
+    public function getProductTotal($rowId)
+    {
+       $product = Cart::get($rowId);
+       $total = ($product->price + $product->options->variants_total) * $product->qty;
+       return $total;
+    }
 }

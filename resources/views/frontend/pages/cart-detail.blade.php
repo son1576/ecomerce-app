@@ -6,8 +6,8 @@
 
 @section('content')
     <!--============================
-                        BREADCRUMB START
-                    ==============================-->
+                                                        BREADCRUMB START
+                                                    ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -25,13 +25,13 @@
         </div>
     </section>
     <!--============================
-                      BREADCRUMB END
-                  ==============================-->
+                                                      BREADCRUMB END
+                                                  ==============================-->
 
 
     <!--============================
-                      CART VIEW PAGE START
-                  ==============================-->
+                                                      CART VIEW PAGE START
+                                                  ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -86,14 +86,18 @@
                                             </td>
 
                                             <td class="wsus__pro_tk">
-                                                <h6>{{ $settings->currency_icon . $item->price + $item->options->variant_total }}
+                                                <h6 id="{{ $item->rowId }}">
+                                                    {{ $settings->currency_icon . ($item->price + $item->options->variants_total) * $item->qty }}
                                                 </h6>
                                             </td>
 
                                             <td class="wsus__pro_select">
-                                                <form class="select_number">
-                                                    <input class="number_area" type="text" min="1" max="100"
-                                                        value="1" />
+                                                <form class="product_qty_wrapper">
+                                                    <button class="btn btn-danger product-decrement">-</button>
+                                                    <input class="product-qty" data-rowid="{{ $item->rowId }}"
+                                                        type="text" min="1" max="100"
+                                                        value="{{ $item->qty }}" />
+                                                    <button class="btn btn-success product-increment">+</button>
                                                 </form>
                                             </td>
 
@@ -158,6 +162,96 @@
         </div>
     </section>
     <!--============================
-                        CART VIEW PAGE END
-                  ==============================-->
+                                                        CART VIEW PAGE END
+                                                  ==============================-->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // incriment product quantity
+            $('.product-increment').on('click', function(e) {
+                e.preventDefault();
+                let input = $(this).siblings('.product-qty');
+                let quantity = parseInt(input.val()) + 1;
+                let rowId = input.data('rowid');
+                input.val(quantity);
+
+                $.ajax({
+                    url: "{{ route('cart.update-quantity') }}",
+                    method: 'POST',
+                    data: {
+                        rowId: rowId,
+                        quantity: quantity
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        if (data.status === 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                                .product_total
+                            $(productId).text(totalAmount)
+                            // renderCartSubTotal()
+                            // calculateCouponDescount()
+                            toastr.success(data.message)
+                        } else if (data.status === 'error') {
+                            toastr.error(data.message)
+                        }
+                    },
+                    error: function(data) {
+
+                    }
+                })
+            })
+
+            // decrement product quantity
+            $('.product-decrement').on('click', function(e) {
+                e.preventDefault();
+                let input = $(this).siblings('.product-qty');
+                let quantity = parseInt(input.val()) - 1;
+                let rowId = input.data('rowid');
+
+                if (quantity < 1) {
+                    quantity = 1;
+                }
+
+                input.val(quantity);
+
+                $.ajax({
+                    url: "{{ route('cart.update-quantity') }}",
+                    method: 'POST',
+                    data: {
+                        rowId: rowId,
+                        quantity: quantity
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                                .product_total
+                            $(productId).text(totalAmount)
+
+                            // renderCartSubTotal()
+                            // calculateCouponDescount()
+
+                            toastr.success(data.message)
+                        } else if (data.status === 'error') {
+                            toastr.error(data.message)
+                        }
+                    },
+                    error: function(data) {
+
+                    }
+                })
+
+            })
+        })
+    </script>
+@endpush
