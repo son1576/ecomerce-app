@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// get csrf cookie
-Route::get('/sanctum/csrf-cookie', function (Request $request) {
-    return response()->json(['message' => 'CSRF cookie set']);
+Route::middleware('auth:sanctum')->get('/csrf-cookie', function (Request $request) {
+    return response()->json([
+        'csrf' => $request->session()->token()
+    ]);
 });
+
+// Auth APIs 
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
+    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+    // Route::delete('/admin/delete-user/{id}', [AdminController::class, 'deleteUser']);
+});
+
+Route::middleware(['auth:sanctum', 'role.api:vendor'])->group(function () {
+    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+    // Route::delete('/admin/delete-user/{id}', [AdminController::class, 'deleteUser']);
+});
+
+
