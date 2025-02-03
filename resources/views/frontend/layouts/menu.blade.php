@@ -58,7 +58,7 @@
                     </ul>
 
                     <ul class="wsus__menu_item">
-                        <li><a class="active" href="index.html">home</a></li>
+                        <li><a class="active" href="{{ url('/') }}">home</a></li>
                         <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                             <div class="wsus__mega_menu">
                                 <div class="row">
@@ -191,7 +191,9 @@
                             LOOP THROUGH CATEGORIES
                         ----------------------- --}}
                         @foreach ($categories as $category)
-                            <li><a href="#" class="{{count($category->subCategories) > 0 ? 'accordion-button' : ''}} collapsed" data-bs-toggle="collapse"
+                            <li><a href="#"
+                                    class="{{ count($category->subCategories) > 0 ? 'accordion-button' : '' }} collapsed"
+                                    data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThreew-{{ $loop->index }}" aria-expanded="false"
                                     aria-controls="flush-collapseThreew-{{ $loop->index }}"><i
                                         class="{{ $category->icon }}"></i>{{ $category->name }}</a>
@@ -204,7 +206,7 @@
                                                     LOOP THROUGH SUB CATEGORIES
                                                 --------------------------- --}}
                                                 @foreach ($category->subCategories as $subCategory)
-                                                <li><a href="#">{{$subCategory->name}}</a></li>
+                                                    <li><a href="#">{{ $subCategory->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>

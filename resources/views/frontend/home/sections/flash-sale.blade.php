@@ -171,10 +171,17 @@
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                                                 @foreach ($product->variants as $variant)
+                                                    @if ($variant->status == 0)
+                                                        @continue
+                                                    @endif
+
                                                     <div class="col-xl-6 col-sm-6">
                                                         <h5 class="mb-2">{{ $variant->name }}</h5>
                                                         <select class="select_2" name="variants_items[]">
                                                             @foreach ($variant->productVariantItems as $variantItem)
+                                                                @if ($variantItem->status == 0)
+                                                                    @continue
+                                                                @endif
                                                                 <option
                                                                     {{ $variantItem->is_default == 1 ? 'selected' : '' }}
                                                                     value="{{ $variantItem->id }}">
