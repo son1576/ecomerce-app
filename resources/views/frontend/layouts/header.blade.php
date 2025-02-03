@@ -64,8 +64,7 @@
                         <small>Variants total:
                             {{ $settings->currency_icon }}{{ $sidebarProduct->options->variants_total }}</small>
                         <br>
-                        <small>Quantity:
-                            {{ $settings->currency_icon }}{{ $sidebarProduct->qty }}</small>
+                        <small>Quantity: {{ $sidebarProduct->qty }}</small>
                     </div>
                 </li>
             @endforeach
