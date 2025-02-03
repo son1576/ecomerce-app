@@ -61,7 +61,25 @@
                                 <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->price }}<del></del>
                                 </p>
                             @endif
-                            <a class="add_cart" href="#">add to cart</a>
+                            <form class="shopping-cart-form">
+
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                @foreach ($product->variants as $variant)
+                                    <select class="d-none" name="variants_items[]">
+                                        @foreach ($variant->productVariantItems as $variantItem)
+                                            <option {{ $variantItem->is_default == 1 ? 'selected' : '' }}
+                                                value="{{ $variantItem->id }}">{{ $variantItem->name }}
+                                                (${{ $variantItem->price }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @endforeach
+                                <input type="hidden" name="qty" type="text" min="1" max="100"
+                                    value="1" />
+
+                                <button class="add_cart" type="submit">add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -149,44 +167,47 @@
                                     <form class="shopping-cart-form">
                                         <div class="wsus__selectbox">
                                             <div class="row">
-        
+
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-        
+
                                                 @foreach ($product->variants as $variant)
                                                     <div class="col-xl-6 col-sm-6">
                                                         <h5 class="mb-2">{{ $variant->name }}</h5>
                                                         <select class="select_2" name="variants_items[]">
                                                             @foreach ($variant->productVariantItems as $variantItem)
-                                                                <option {{ $variantItem->is_default == 1 ? 'selected' : '' }}
-                                                                    value="{{ $variantItem->id }}">{{ $variantItem->name }}
+                                                                <option
+                                                                    {{ $variantItem->is_default == 1 ? 'selected' : '' }}
+                                                                    value="{{ $variantItem->id }}">
+                                                                    {{ $variantItem->name }}
                                                                     (${{ $variantItem->price }})
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 @endforeach
-        
+
                                             </div>
                                         </div>
-        
+
                                         <div class="wsus__quentity">
                                             <h5>quentity :</h5>
                                             <div class="select_number">
-                                                <input class="number_area" name="qty" type="text" min="1"
-                                                    max="100" value="1" />
+                                                <input class="number_area" name="qty" type="text"
+                                                    min="1" max="100" value="1" />
                                             </div>
-        
+
                                         </div>
-        
+
                                         <ul class="wsus__button_area">
-                                            <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+                                            <li><button type="submit" class="add_cart" href="#">add to
+                                                    cart</button></li>
                                             <li><a class="buy_now" href="#">buy now</a></li>
                                             <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-random"></i></a></li>
                                         </ul>
                                     </form>
-                                    <p class="brand_model"><span>brand :</span> {{$product->brand->name}}</p>
-                                    
+                                    <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
+
                                 </div>
                             </div>
                         </div>
