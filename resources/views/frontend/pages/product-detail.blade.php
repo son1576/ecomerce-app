@@ -6,8 +6,8 @@
 
 @section('content')
     <!--==========================
-                                                                                                                  PRODUCT MODAL VIEW START
-                                                                                                                ===========================-->
+                                                                                                                                                  PRODUCT MODAL VIEW START
+                                                                                                                                                ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -145,13 +145,13 @@
         </div>
     </section>
     <!--==========================
-                                                                                                                PRODUCT MODAL VIEW END
-                                                                                                              ===========================-->
+                                                                                                                                                PRODUCT MODAL VIEW END
+                                                                                                                                              ===========================-->
 
 
     <!--============================
-                                                                                                                  BREADCRUMB START
-                                                                                                              ==============================-->
+                                                                                                                                                  BREADCRUMB START
+                                                                                                                                              ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -169,13 +169,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                  BREADCRUMB END
-                                                                                                              ==============================-->
+                                                                                                                                                  BREADCRUMB END
+                                                                                                                                              ==============================-->
 
 
     <!--============================
-                                                                                                                  PRODUCT DETAILS START
-                                                                                                              ==============================-->
+                                                                                                                                                  PRODUCT DETAILS START
+                                                                                                                                              ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -588,13 +588,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                  PRODUCT DETAILS END
-                                                                                                              ==============================-->
+                                                                                                                                                  PRODUCT DETAILS END
+                                                                                                                                              ==============================-->
 
 
     <!--============================
-                                                                                                                  RELATED PRODUCT START
-                                                                                                              ==============================-->
+                                                                                                                                                  RELATED PRODUCT START
+                                                                                                                                              ==============================-->
     <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -758,8 +758,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                  RELATED PRODUCT END
-                                                                                                              ==============================-->
+                                                                                                                                                  RELATED PRODUCT END
+                                                                                                                                              ==============================-->
 @endsection
 
 @push('scripts')
@@ -780,12 +780,10 @@
                     data: formData,
                     url: "{{ route('add-to-cart') }}",
                     success: function(data) {
-                        if (data.status) {
-                            toastr.success(data.message);
-                            getCartCount();
-                        } else {
-                            toastr.error(data.message);
-                        }
+                        getCartCount();
+                        fetchSidebarCartProducts();
+                        $('.mini_cart_actions').removeClass('d-none');
+                        toastr.success(data.message);
                     },
                     error: function(err) {
                         console.log(err);
@@ -799,6 +797,87 @@
                     url: "{{ route('cart-count') }}",
                     success: function(data) {
                         $('#cart-count').text(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
+
+            function fetchSidebarCartProducts() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-products') }}",
+                    success: function(data) {
+                        $('.mini_cart_wrapper').html("");
+                        var html = '';
+                        for (let item in data) {
+                            let product = data[item];
+                            html += `
+                            <li id="mini_cart_${product.rowId}">
+                                <div class="wsus__cart_img">
+                                    <a href="{{ url('product-detail') }}/${product.options.slug}"><img src="{{ asset('/') }}${product.options.image}" alt="product" class="img-fluid w-100"></a>
+                                    <a class="wsis__del_icon remove_sidebar_product" data-id="${product.rowId}" href="#"><i class="fas fa-minus-circle"></i></a>
+                                </div>
+                                <div class="wsus__cart_text">
+                                    <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${data[item].name}</a>
+                                    <p>{{ $settings->currency_icon }}${product.price}</p>
+
+                                    <small>Variants total:
+                                        {{ $settings->currency_icon }}${product.options.variants_total}</small>
+                                    <br>
+                                    <small>Quantity:
+                                        {{ $settings->currency_icon }}${product.qty}</small>
+                                </div>
+                            </li>`
+                        }
+
+                        $('.mini_cart_wrapper').html(html);
+
+                        getSidebarCartSubtotal();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
+
+            // Remove Sidebar Product
+            $('body').on('click', '.remove_sidebar_product', function(e) {
+                e.preventDefault();
+                let rowId = $(this).data('id');
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('cart.remove-sidebar-product') }}",
+                    data: {
+                        rowId: rowId
+                    },
+                    success: function(data) {
+                        let miniCart = '#mini_cart_' + rowId
+                        $(miniCart).remove()
+
+                        getSidebarCartSubtotal();
+
+                        if ($('.mini_cart_wrapper').find('li').length == 0) {
+                            $('.mini_cart_actions').addClass('d-none')
+                            $('.mini_cart_wrapper').html(
+                                "<li class='text-center'>Cart is empty!</li>")
+                        }
+                        toastr.success(data.message)
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            })
+
+            // Get mini cart sub total
+            function getSidebarCartSubtotal() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart.sidebar-product-total') }}",
+                    success: function(data) {
+                        $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + data);
                     },
                     error: function(err) {
                         console.log(err);

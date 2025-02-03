@@ -128,4 +128,29 @@ class CartController extends Controller
     {
         return Cart::content()->count();
     }
+
+    /** Get all cart products */
+    public function getCartProducts()
+    {
+        return Cart::content();
+    }
+
+    /** Romve product form sidebar cart */
+    public function removeSidebarProduct(Request $request)
+    {
+        Cart::remove($request->rowId);
+
+        return response(['status' => 'success', 'message' => 'Product removed successfully!']);
+    }
+
+    /** get cart total amount */
+    public function cartTotal()
+    {
+        $total = 0;
+        foreach(Cart::content() as $product){
+            $total += $this->getProductTotal($product->rowId);
+        }
+
+        return $total;
+    }
 }
