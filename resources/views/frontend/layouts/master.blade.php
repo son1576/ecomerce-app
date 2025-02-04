@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        {{-- <link rel="stylesheet" href="{{ asset('backend/assets/modules/select2/dist/css/select2.min.css') }}"> --}}
+
 
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
@@ -158,8 +160,17 @@
     {{-- Toastr lib --}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    {{-- Select2 Lib --}}
+    {{-- <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script> --}}
+
     {{-- Sweet Alert Lib --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select_2').select2();
+        });
+    </script>
 
     <script>
         @if ($errors->any())
