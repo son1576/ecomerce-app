@@ -108,7 +108,7 @@
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
                                         <div class="wsus__payment_area">
-                                            <button class="common_btn">Pay with Paypal</button>
+                                            <button class="common_btn"><a class="text-white" href="{{route('user.paypal.payment')}}">Pay with Paypal</a></button>
                                         </div>
                                     </div>
                                 </div>
