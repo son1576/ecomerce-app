@@ -109,6 +109,8 @@
     <script>
         $(document).ready(function() {
 
+            $('.select2').select2();
+
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             console.log(csrfToken);
 

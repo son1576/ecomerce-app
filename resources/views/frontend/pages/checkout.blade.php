@@ -6,8 +6,8 @@
 
 @section('content')
     <!--============================
-            BREADCRUMB START
-        ==============================-->
+                BREADCRUMB START
+            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -24,13 +24,13 @@
         </div>
     </section>
     <!--============================
-            BREADCRUMB END
-        ==============================-->
+                BREADCRUMB END
+            ==============================-->
 
 
     <!--============================
-            CHECK OUT PAGE START
-        ==============================-->
+                CHECK OUT PAGE START
+            ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -209,8 +209,8 @@
         </div>
     </div>
     <!--============================
-            CHECK OUT PAGE END
-        ==============================-->
+                CHECK OUT PAGE END
+            ==============================-->
 @endsection
 
 @push('scripts')
