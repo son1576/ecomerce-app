@@ -19,8 +19,10 @@ class Product extends Model
         'short_description',
         'long_description',
         'price',
+        'subCategory',
+        'childCategory',
         'status',
-        'thumb_image'  
+        'thumb_image'
     ];
 
 

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ApiAdminVendorProfileController;
 use App\Http\Controllers\api\ApiBrandController;
+use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\api\apiVendorProductController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
@@ -51,6 +53,20 @@ Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
     Route::delete('/brands/{id}', [ApiBrandController::class, 'destroy']);
     Route::post('/brands/change-status', [ApiBrandController::class, 'changeStatus']);
 });
+// Admin Vendor Profile APIs
+Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
+    Route::get('/vendor-profile', [ApiAdminVendorProfileController::class, 'index']);
+    Route::post('/vendor-profile/update', [ApiAdminVendorProfileController::class, 'update']);
+});
+// Category APIs
+Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
+    Route::get('/category', [ApiCategoryController::class, 'index']);
+    Route::post('/category', [ApiCategoryController::class, 'store']);
+    Route::put('/category/{id}', [ApiCategoryController::class, 'update']);
+    Route::delete('/category/{id}', [ApiCategoryController::class, 'destroy']);
+    Route::post('/category/change-status', [ApiCategoryController::class, 'changeStatus']);
+});
+
 
 Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
     // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);

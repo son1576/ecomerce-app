@@ -9,8 +9,24 @@ class Vendor extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'address',
+        'business_name',
+        'business_license',
+        'tax_id',
+        'logo',
+        'banner',
+        'website',
+        'description',
+        'status', // Trạng thái active/inactive
+        'created_at',
+        'updated_at'
+    ];
+    public function user()    {
+
         return $this->belongsTo(User::class);
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +21,7 @@ class ApiVendorProductController extends Controller
     }
 
     /**
-     * Lấy danh sách sản phẩm của vendor
+     * Get list vendor Product
      */
     public function index()
     {
@@ -28,7 +30,7 @@ class ApiVendorProductController extends Controller
     }
 
     /**
-     * Hiển thị thông tin sản phẩm để chỉnh sửa
+     * Show information of editing product
      */
     public function edit($id)
     {
@@ -42,7 +44,7 @@ class ApiVendorProductController extends Controller
     }
 
     /**
-     * Tạo mới sản phẩm
+     * Create new product
      */
     public function store(Request $request)
     {
@@ -81,7 +83,7 @@ class ApiVendorProductController extends Controller
     }
 
     /**
-     * Cập nhật sản phẩm
+     * Update Product
      */
     public function update(Request $request, $id)
     {
@@ -126,7 +128,7 @@ class ApiVendorProductController extends Controller
     }
 
     /**
-     * Xóa sản phẩm
+     * delete product
      */
     public function destroy($id)
     {
@@ -157,13 +159,13 @@ class ApiVendorProductController extends Controller
     // cont after test category APIs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public function getSubCategories(Request $request)
     {
-        $subCategories = Category::where('parent_id', $request->category_id)->get();
+        $subCategories = SubCategory::where('category_id', $request->category_id)->get();
         return response()->json(['sub_categories' => $subCategories]);
     }
 
     public function getChildCategories(Request $request)
     {
-        $childCategories = Category::where('parent_id', $request->subcategory_id)->get();
+        $childCategories = ChildCategory::where('sub_category_id', $request->subcategory_id)->get();
         return response()->json(['child_categories' => $childCategories]);
     }
 }
