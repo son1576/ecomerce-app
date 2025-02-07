@@ -179,3 +179,71 @@
     </section>
 @endsection
 
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#order_status').on('change', function() {
+                let status = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('admin.order.status') }}",
+                    data: {
+                        status: status,
+                        id: id
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            toastr.success(data.message)
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                })
+            })
+
+            $('#payment_status').on('change', function() {
+                let status = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('admin.payment.status') }}",
+                    data: {
+                        status: status,
+                        id: id
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            toastr.success(data.message)
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                })
+            })
+
+            $('.print_invoice').on('click', function() {
+                let printBody = $('.invoice-print');
+                let originalContents = $('body').html();
+
+                $('body').html(printBody.html());
+
+                window.print();
+
+                $('body').html(originalContents);
+
+            })
+        })
+    </script>
+@endpush
