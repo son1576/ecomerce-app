@@ -18,11 +18,11 @@ class AuthController extends Controller
 
         // Tìm user theo email
         $user = User::where('email', $credentials['email'])->first();
-
         // Kiểm tra mật khẩu
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+
 
         // Tạo token cho user
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -33,6 +33,7 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+  
     //logout
     public function destroy(Request $request)
     {
@@ -69,4 +70,5 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
+
 }

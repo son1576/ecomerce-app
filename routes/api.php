@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/csrf-cookie', function (Request $reques
     ]);
 });
 
+
 // Auth APIs
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -66,6 +67,7 @@ Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
     Route::delete('/category/{id}', [ApiCategoryController::class, 'destroy']);
     Route::post('/category/change-status', [ApiCategoryController::class, 'changeStatus']);
 });
+
 
 
 Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {

@@ -6,8 +6,10 @@
 
 @section('content')
     <!--============================
+
                                 BREADCRUMB START
                             ==============================-->
+
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -31,6 +33,7 @@
     <!--============================
                               PAYMENT PAGE START
                           ==============================-->
+
     <section id="wsus__cart_view">
         <div class="container">
             <div class="wsus__pay_info_area">
@@ -50,6 +53,12 @@
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-stripe" type="button" role="tab"
                                     aria-controls="v-pills-stripe" aria-selected="false">Stripe</button>
+
+
+                                <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-cod" type="button" role="tab"
+                                    aria-controls="v-pills-stripe" aria-selected="false">COD</button>
+
 
                             </div>
                         </div>
@@ -108,21 +117,18 @@
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
                                         <div class="wsus__payment_area">
-                                            <button class="common_btn"><a class="text-white" href="{{route('user.paypal.payment')}}">Pay with Paypal</a></button>
+
+                                            <button class="common_btn"><a class="text-white"
+                                                    href="{{ route('user.paypal.payment') }}">Pay with Paypal</a></button>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="v-pills-stripe" role="tabpanel"
-                                aria-labelledby="v-pills-paypal-tab">
-                                <div class="row">
-                                    <div class="col-xl-12 m-auto">
-                                        <div class="wsus__payment_area">
-                                            <button class="common_btn">Pay with Stripe</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            @include('frontend.pages.payment-gateway.cod')
+                            
+
                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab">
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, tempora cum optio
@@ -163,6 +169,8 @@
         </div>
     </section>
     <!--============================
-                              PAYMENT PAGE END
-                          ==============================-->
+
+                                  PAYMENT PAGE END
+                              ==============================-->
+
 @endsection
