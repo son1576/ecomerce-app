@@ -21,7 +21,6 @@ function checkDiscount($product)
 }
 
 /** Calculate discount percent */
-
 function calculateDiscountPercent($originalPrice, $discountPrice)
 {
   $discountAmount = $originalPrice - $discountPrice;
@@ -114,4 +113,26 @@ function getShippingFee()
 /** get payable amount */
 function getFinalPayableAmount(){
   return  getMainCartTotal() + getShippingFee();
+}
+
+/** get order product total amount */
+function getOrderProductTotal($product)
+{
+  return ($product->unit_price + $product->variant_total) * $product->qty;
+}
+
+/** get order discount */
+function getOrderDiscount($order)
+{
+  $total = $order->sub_total;
+  if ($order->coupon) {
+    $coupon = json_decode($order->coupon, true);
+    if ($coupon['discount_type'] === 'amount') {
+      $discount = $coupon['discount'];
+    } elseif ($coupon['discount_type'] === 'percent') {
+      $discount = ($total * $coupon['discount'] / 100);
+    }
+  }
+
+  return $discount;
 }
