@@ -106,6 +106,8 @@ Route::get('dropped-off-orders', [OrderController::class, 'droppedOfOrders'])->n
 
 Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->name('shipped-orders');
 Route::get('out-for-delivery-orders', [OrderController::class, 'outForDeliveryOrders'])->name('out-for-delivery-orders');
+Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->name('delivered-orders');
+Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->name('canceled-orders');
 Route::resource('order', OrderController::class);
 
 /** Shipping Rules Routes */
