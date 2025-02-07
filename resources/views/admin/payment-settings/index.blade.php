@@ -19,15 +19,8 @@
                                     <div class="list-group" id="list-tab" role="tablist">
                                         <a class="list-group-item list-group-item-action active" id="list-home-list"
                                             data-toggle="list" href="#list-home" role="tab">Paypal</a>
-                                        <a class="list-group-item list-group-item-action" id="list-profile-list"
-                                            data-toggle="list" href="#list-profile" role="tab">Email Configuration</a>
-                                        <a class="list-group-item list-group-item-action" id="list-messages-list"
-                                            data-toggle="list" href="#list-messages" role="tab">Logo and Favicon</a>
-
-                                        <a class="list-group-item list-group-item-action" id="list-pusher-list"
-                                            data-toggle="list" href="#pusher-setting" role="tab">Pusher Setting</a>
-
-
+                                        <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                            data-toggle="list" href="#list-settings" role="tab">COD</a>
                                     </div>
                                 </div>
                                 <div class="col-10">
@@ -35,11 +28,8 @@
 
                                         @include('admin.payment-settings.sections.paypal-setting')
 
-                                        @include('admin.setting.email-configuration')
-
-                                        @include('admin.setting.logo-setting')
-
-                                        @include('admin.setting.pusher-setting')
+                                        @include('admin.payment-settings.sections.cod-setting')
+                                        
                                     </div>
                                 </div>
                             </div>
