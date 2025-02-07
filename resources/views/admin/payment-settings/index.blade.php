@@ -19,8 +19,10 @@
                                     <div class="list-group" id="list-tab" role="tablist">
                                         <a class="list-group-item list-group-item-action active" id="list-home-list"
                                             data-toggle="list" href="#list-home" role="tab">Paypal</a>
+
                                         <a class="list-group-item list-group-item-action" id="list-settings-list"
                                             data-toggle="list" href="#list-settings" role="tab">COD</a>
+
                                     </div>
                                 </div>
                                 <div class="col-10">
