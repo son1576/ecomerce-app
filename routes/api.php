@@ -67,6 +67,17 @@ Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
     Route::delete('/category/{id}', [ApiCategoryController::class, 'destroy']);
     Route::post('/category/change-status', [ApiCategoryController::class, 'changeStatus']);
 });
+// Child Category APIs
+use App\Http\Controllers\Api\ApiChildCategoryController;
+
+Route::middleware(['auth:sanctum', 'role.api:admin'])->group(function () {
+    Route::get('/child-categories', [ApiChildCategoryController::class, 'index']);
+    Route::post('/child-categories', [ApiChildCategoryController::class, 'store']);
+    Route::put('/child-categories/{id}', [ApiChildCategoryController::class, 'update']);
+    Route::delete('/child-categories/{id}', [ApiChildCategoryController::class, 'destroy']);
+    Route::post('/child-categories/change-status', [ApiChildCategoryController::class, 'changeStatus']);
+    Route::get('/getsub-categories', action: [ApiChildCategoryController::class, 'getSubCategories']);
+});
 
 
 

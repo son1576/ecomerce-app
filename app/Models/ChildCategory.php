@@ -18,4 +18,12 @@ class ChildCategory extends Model
     {
         return $this->belongsTo(SubCategory::class);
     }
+    protected $fillable = [
+        "category_id",
+        "sub_category_id",
+        "name",
+        "slug",
+        "status",
+
+    ];
 }
