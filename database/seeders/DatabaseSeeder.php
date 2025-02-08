@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(
             // UserSeeder::class
-            AdminProfileSeeder::class
+            // AdminProfileSeeder::class
+            HomePageSettingSeeder::class
         );
     }
 }
