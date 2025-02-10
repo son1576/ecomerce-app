@@ -53,22 +53,37 @@ class HomePageSettingSeeder extends Seeder
         ];
 
 
-
+        $data4 = [
+            [
+                'category' => 5,
+                'sub_category' => 6,
+                'child_category' => 7,
+            ],
+            [
+                'category' => 6,
+                'sub_category' => 7,
+                'child_category' => 8,
+            ]
+        ];
 
 
         DB::table('home_page_settings')->insert([
+            // [
+            //     'key' => 'popular_category_section',
+            //     'value' => json_encode($data1)
+            // ],
+            // [
+            //     'key' => 'product_slider_section_one',
+            //     'value' => json_encode($data2)
+            // ],
+            // [
+            //     'key' => 'product_slider_section_two',
+            //     'value' => json_encode($data3)
+            // ],
             [
-                'key' => 'popular_category_section',
-                'value' => json_encode($data1)
-            ],
-            [
-                'key' => 'product_slider_section_one',
-                'value' => json_encode($data2)
-            ],
-            [
-                'key' => 'product_slider_section_two',
-                'value' => json_encode($data3)
-            ],
+                'key' => 'product_slider_section_three',
+                'value' => json_encode($data4)
+            ]
         ]);
     }
 }
