@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontendProductController extends Controller
 {
@@ -27,7 +28,6 @@ class FrontendProductController extends Controller
     }
 
 
-    // 
     /** Show product detail page */
     public function showProduct(string $slug)
     {
@@ -37,5 +37,11 @@ class FrontendProductController extends Controller
             'product',
             // 'reviews'
         ));
+    }
+
+    /** Show products page depend on session */
+    public function changeListView(Request $request)
+    {
+       Session::put('product_list_style', $request->style);
     }
 }
