@@ -17,12 +17,35 @@ class FrontendProductController extends Controller
     public function productsIndex(Request $request)
     {
         if ($request->has('category')) {
-            $category = Category::where('slug', $request->category)->first();
+            $category = Category::where('slug', $request->category)->firstOrFail();
             $products = Product::where([
                 'category_id' => $category->id,
                 'status' => 1,
                 'is_approved' => 1
             ])->paginate(12);
+        } elseif ($request->has('subcategory')) {
+            $subCategory = SubCategory::where('slug', $request->subcategory)->firstOrFail();
+            $products = Product::where([
+                'sub_category_id' => $subCategory->id,
+                'status' => 1,
+                'is_approved' => 1
+            ])->paginate(12);
+        } elseif ($request->has('childcategory')) {
+            $childCategory = ChildCategory::where('slug', $request->childcategory)->firstOrFail();
+            $products = Product::where([
+                'child_category_id' => $childCategory->id,
+                'status' => 1,
+                'is_approved' => 1
+            ])->paginate(12);
+        } elseif ($request->has('brand')) {
+            $brand = Brand::where('slug', $request->brand)->firstOrFail();
+            $products = Product::where([
+                'brand_id' => $brand->id,
+                'status' => 1,
+                'is_approved' => 1
+            ])->paginate(12);
+        } else {
+            $products = Product::where('status', 1)->where('is_approved', 1)->paginate(12);
         }
         return view('frontend.pages.product', compact('products'));
     }

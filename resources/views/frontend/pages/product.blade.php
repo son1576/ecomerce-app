@@ -6,8 +6,8 @@
 
 @section('content')
     <!--============================
-                                                                                    BREADCRUMB START
-                                                                                ==============================-->
+                                                                                                    BREADCRUMB START
+                                                                                                ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -24,13 +24,13 @@
         </div>
     </section>
     <!--============================
-                                                                                    BREADCRUMB END
-                                                                                ==============================-->
+                                                                                                    BREADCRUMB END
+                                                                                                ==============================-->
 
 
     <!--============================
-                                                                                    PRODUCT PAGE START
-                                                                                ==============================-->
+                                                                                                    PRODUCT PAGE START
+                                                                                                ==============================-->
     <section id="wsus__product_page">
         <div class="container">
             <div class="row">
@@ -242,7 +242,7 @@
                                     <div class="nav nav-pills" id="v-pills-tab" role="tablist"
                                         aria-orientation="vertical">
                                         <button
-                                            class="nav-link {{ session()->has('product_list_style') && session()->get('product_list_style') == 'gird' ? 'active' : '' }} {{ !session()->has('product_list_style') ? 'active' : '' }} list-view"
+                                            class="nav-link {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'active' : '' }} {{ !session()->has('product_list_style') ? 'active' : '' }} list-view"
                                             data-id="grid" id="v-pills-home-tab" data-bs-toggle="pill"
                                             data-bs-target="#v-pills-home" type="button" role="tab"
                                             aria-controls="v-pills-home" aria-selected="true">
@@ -256,28 +256,11 @@
                                             <i class="fas fa-list-ul"></i>
                                         </button>
                                     </div>
-                                    <div class="wsus__topbar_select">
-                                        <select class="select_2" name="state">
-                                            <option>default shorting</option>
-                                            <option>short by rating</option>
-                                            <option>short by latest</option>
-                                            <option>low to high </option>
-                                            <option>high to low</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="wsus__topbar_select">
-                                    <select class="select_2" name="state">
-                                        <option>show 12</option>
-                                        <option>show 15</option>
-                                        <option>show 18</option>
-                                        <option>show 21</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'gird' ? 'show active' : '' }} {{ !session()->has('product_list_style') ? 'show active' : '' }}"
+                            <div class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'show active' : '' }} {{ !session()->has('product_list_style') ? 'active' : '' }}"
                                 id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <div class="row">
 
@@ -446,35 +429,32 @@
                             </div>
                         </div>
                     </div>
+                    @if (count($products) == 0)
+                        <div class="text-center mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="text-center">No Product Found</h3>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
-                <div class="col-xl-12">
-                    <section id="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link page_active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </section>
+            </div>
+
+
+            <div class="col-xl-12">
+                <div class="mt-5" style="display: flex; justify-content: center">
+                    @if ($products->hasPages())
+                        {{ $products->withQueryString()->links() }}
+                    @endif
                 </div>
             </div>
         </div>
+        </div>
     </section>
     <!--============================
-                                                                                    PRODUCT PAGE END
-                                                                                ==============================-->
+                                                                                                    PRODUCT PAGE END
+                                                                                                ==============================-->
 @endsection
 
 @push('scripts')

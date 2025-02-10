@@ -34,7 +34,7 @@
                                             LOOP THROUGH SUB CATEGORIES
                                         --------------------------- --}}
                                         @foreach ($category->subCategories as $subCategory)
-                                            <li><a href="#">{{ $subCategory->name }}<i
+                                            <li><a href="{{ route('products.index', ['subcategory' => $subCategory->slug]) }}">{{ $subCategory->name }}<i
                                                         class="{{ count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : '' }}"></i></a>
                                                 @if (count($subCategory->childCategories) > 0)
                                                     <ul class="wsus__sub_category">
@@ -42,7 +42,7 @@
                                                             LOOP THROUGH CHILD CATEGORIES
                                                         ------------------------------ --}}
                                                         @foreach ($subCategory->childCategories as $childCategory)
-                                                            <li><a href="#">{{ $subCategory->name }}</a> </li>
+                                                            <li><a href="{{ route('products.index', ['childcategory' => $childCategory->slug]) }}">{{ $subCategory->name }}</a> </li>
                                                         @endforeach
 
                                                     </ul>
