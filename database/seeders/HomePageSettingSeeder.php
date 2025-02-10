@@ -38,12 +38,21 @@ class HomePageSettingSeeder extends Seeder
 
 
         $data2 = [
-            
-                'category' => 3,
-                'sub_category' => 2,
-                'child_category' => 3,
-            
+
+            'category' => 3,
+            'sub_category' => 2,
+            'child_category' => 3,
+
         ];
+
+        $data3 = [
+            'category' => 4,
+            'sub_category' => 4,
+            'child_category' => 5,
+
+        ];
+
+
 
 
 
@@ -55,7 +64,11 @@ class HomePageSettingSeeder extends Seeder
             [
                 'key' => 'product_slider_section_one',
                 'value' => json_encode($data2)
-            ]
+            ],
+            [
+                'key' => 'product_slider_section_two',
+                'value' => json_encode($data3)
+            ],
         ]);
     }
 }

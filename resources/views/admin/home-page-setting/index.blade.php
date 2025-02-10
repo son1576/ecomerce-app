@@ -38,9 +38,9 @@
 
                                         @include('admin.home-page-setting.sections.product-slider-section-one')
 
-                                        {{-- @include('admin.home-page-setting.sections.product-slider-section-two')
+                                        @include('admin.home-page-setting.sections.product-slider-section-two')
 
-                                        @include('admin.home-page-setting.sections.product-slider-section-three') --}}
+                                        {{-- @include('admin.home-page-setting.sections.product-slider-section-three') --}}
 
 
                                     </div>
