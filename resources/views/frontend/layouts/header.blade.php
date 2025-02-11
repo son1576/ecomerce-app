@@ -33,7 +33,9 @@
                         </div>
                     </div>
                     <ul class="wsus__icon_area">
-                        <li><a href="{{ route('user.wishlist.index') }}"><i class="fal fa-heart"></i><span>05</span></a>
+                        <li><a href="{{ route('user.wishlist.index') }}"><i class="fal fa-heart"></i><span id="wishlist_count">
+                                    {{ \App\Models\Wishlist::where('user_id', auth()->user()->id)->count() }}
+                                </span></a>
                         </li>
                         <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li>
                         <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i><span
