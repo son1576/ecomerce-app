@@ -36,4 +36,19 @@ class WishlistController extends Controller
 
         return response(['status' => 'success', 'message' => 'Product added into the wishlist!', 'count' => $count]);
     }
+
+    public function destory(string $id)
+    {
+
+        $wishlistProducts = Wishlist::where('id', $id)->firstOrFail();
+        if($wishlistProducts->user_id !== Auth::user()->id){
+            return redirect()->back();
+        }
+        $wishlistProducts->delete();
+
+        toastr('Product removed successfully', 'success', 'success');
+
+        return redirect()->back();
+
+    }
 }
