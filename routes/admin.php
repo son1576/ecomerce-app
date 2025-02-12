@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CodSettingController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
@@ -24,9 +25,6 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\TransactionController;
-use App\Http\Controllers\Backend\VendorController;
-use App\Models\FooterInfo;
-use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Route;
 
 /** Admin Routes */
@@ -123,6 +121,8 @@ Route::resource('shipping-rule', ShippingRuleController::class);
 
 /** footer routes */
 Route::resource('footer-info', FooterInfoController::class);
+Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-socials.change-status');
+Route::resource('footer-socials', FooterSocialController::class);
 
 /** General Setting Routes */
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
