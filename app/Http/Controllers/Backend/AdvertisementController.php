@@ -11,29 +11,34 @@ class AdvertisementController extends Controller
 {
     use ImageUploadsTrait;
 
-    public function index() {
+    public function index()
+    {
         $homepage_section_banner_one = Advertisement::where('key', 'homepage_section_banner_one')->first();
         $homepage_section_banner_one = json_decode($homepage_section_banner_one->value);
-        
+
         $homepage_section_banner_two = Advertisement::where('key', 'homepage_section_banner_two')->first();
         $homepage_section_banner_two = json_decode($homepage_section_banner_two->value);
-        
+
         $homepage_section_banner_three = Advertisement::where('key', 'homepage_section_banner_three')->first();
         $homepage_section_banner_three = json_decode($homepage_section_banner_three->value);
         
+        $homepage_section_banner_four = Advertisement::where('key', 'homepage_section_banner_four')->first();
+        $homepage_section_banner_four = json_decode($homepage_section_banner_four->value);
+
         return view('admin.advertisement.index', compact([
             'homepage_section_banner_one',
             'homepage_section_banner_two',
-            'homepage_section_banner_three'
+            'homepage_section_banner_three',
+            'homepage_section_banner_four'
         ]));
     }
 
     public function homepageBannerSectionOne(Request $request)
     {
-       $request->validate([
-        'banner_image' => ['image'],
-        'banner_url' => ['required']
-       ]);
+        $request->validate([
+            'banner_image' => ['image'],
+            'banner_url' => ['required']
+        ]);
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_image', 'uploads');
@@ -44,14 +49,14 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
 
         $value = json_encode($value);
-       Advertisement::updateOrCreate(
+        Advertisement::updateOrCreate(
             ['key' => 'homepage_section_banner_one'],
             ['value' => $value]
         );
@@ -59,7 +64,6 @@ class AdvertisementController extends Controller
         toastr('Updated Successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 
     public function homepageBannerSectionTwo(Request $request)
@@ -87,15 +91,15 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_two_status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if(!empty($imagePathTwo)){
+        if (!empty($imagePathTwo)) {
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        }else {
+        } else {
 
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
@@ -142,21 +146,21 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_three_status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if(!empty($imagePathTwo)){
+        if (!empty($imagePathTwo)) {
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        }else {
+        } else {
 
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
-        if(!empty($imagePathThree)){
+        if (!empty($imagePathThree)) {
             $value['banner_three']['banner_image'] = $imagePathThree;
-        }else {
+        } else {
 
             $value['banner_three']['banner_image'] = $request->banner_three_old_image;
         }
@@ -164,6 +168,40 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
         Advertisement::updateOrCreate(
             ['key' => 'homepage_section_banner_three'],
+            ['value' => $value]
+        );
+
+        toastr('Updated Successfully!', 'success', 'success');
+
+        return redirect()->back();
+    }
+
+    public function homepageBannerSectionFour(Request $request)
+    {
+        $request->validate([
+            'banner_image' => ['image'],
+            'banner_url' => ['required']
+        ]);
+
+        /** Handle the image upload */
+        $imagePath = $this->updateImage($request, 'banner_image', 'uploads');
+
+        $value = [
+            'banner_one' => [
+                'banner_url' => $request->banner_url,
+                'status' => $request->status == 'on' ? 1 : 0
+            ]
+        ];
+        if (!empty($imagePath)) {
+            $value['banner_one']['banner_image'] = $imagePath;
+        } else {
+
+            $value['banner_one']['banner_image'] = $request->banner_old_image;
+        }
+
+        $value = json_encode($value);
+        Advertisement::updateOrCreate(
+            ['key' => 'homepage_section_banner_four'],
             ['value' => $value]
         );
 
