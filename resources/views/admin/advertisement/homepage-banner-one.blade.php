@@ -1,7 +1,7 @@
 <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
     <div class="card border">
         <div class="card-body">
-            <form action="{{ route('admin.homepage-banner-secion-one') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.homepage-banner-section-one') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
