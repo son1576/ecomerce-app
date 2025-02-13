@@ -6,8 +6,8 @@
 
 @section('content')
     <!--==========================
-                                                                                                                                                                                          PRODUCT MODAL VIEW START
-                                                                                                                                                                                        ===========================-->
+                                                                                                                                                                                                      PRODUCT MODAL VIEW START
+                                                                                                                                                                                                    ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -145,13 +145,13 @@
         </div>
     </section>
     <!--==========================
-                                                                                                                                                                                        PRODUCT MODAL VIEW END
-                                                                                                                                                                                      ===========================-->
+                                                                                                                                                                                                    PRODUCT MODAL VIEW END
+                                                                                                                                                                                                  ===========================-->
 
 
     <!--============================
-                                                                                                                                                                                          BREADCRUMB START
-                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                      BREADCRUMB START
+                                                                                                                                                                                                  ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -169,13 +169,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                          BREADCRUMB END
-                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                      BREADCRUMB END
+                                                                                                                                                                                                  ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                          PRODUCT DETAILS START
-                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                      PRODUCT DETAILS START
+                                                                                                                                                                                                  ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -229,12 +229,19 @@
                                 <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                             @endif
                             <p class="review">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>20 review</span>
+                                @php
+                                    $avgRating = $product->reviews()->avg('rating');
+                                    $fullRating = round($avgRating);
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $fullRating)
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
+                                @endfor
+                                <span>({{ count($product->reviews) }} review)</span>
                             </p>
 
                             <p class="description">{!! $product->short_description !!}</p>
@@ -403,12 +410,19 @@
                                                 <div class="wsus__pro_det_vendor_text">
                                                     <h4>{{ $product->vendor->user->name }}</h4>
                                                     <p class="rating">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span>(41 review)</span>
+                                                        @php
+                                                            $avgRating = $product->reviews()->avg('rating');
+                                                            $fullRating = round($avgRating);
+                                                        @endphp
+
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $fullRating)
+                                                                <i class="fas fa-star"></i>
+                                                            @else
+                                                                <i class="far fa-star"></i>
+                                                            @endif
+                                                        @endfor
+                                                        <span>({{ count($product->reviews) }} review)</span>
                                                     </p>
                                                     <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
                                                     <p><span>Address:</span> {{ $product->vendor->address }}</p>
@@ -442,7 +456,8 @@
                                                                 <div class="wsus__comment_text reply">
                                                                     <h6>{{ $review->user->name }}
                                                                         <span>{{ $review->rating }} <i
-                                                                                class="fas fa-star"></i></span></h6>
+                                                                                class="fas fa-star"></i></span>
+                                                                    </h6>
                                                                     <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
                                                                     <p>{{ $review->review }}
                                                                     </p>
@@ -468,7 +483,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
-
                                                     @auth
                                                         @php
                                                             $isBrought = false;
@@ -489,7 +503,7 @@
 
                                                         @endphp
 
-                                                        @if ($isBrought)
+                                                        @if ($isBrought === true)
                                                             <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
                                                                 <h4>write a Review</h4>
                                                                 <form action="{{ route('user.review.create') }}"
@@ -554,13 +568,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                              PRODUCT DETAILS END
-                                                                                                                                                                                          ==============================-->
+                                                                                                                                                                                                          PRODUCT DETAILS END
+                                                                                                                                                                                                      ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                              RELATED PRODUCT START
-                                                                                                                                                                                          ==============================-->
+                                                                                                                                                                                                          RELATED PRODUCT START
+                                                                                                                                                                                                      ==============================-->
     <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -724,6 +738,6 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                              RELATED PRODUCT END
-                                                                                                                                                                                          ==============================-->
+                                                                                                                                                                                                          RELATED PRODUCT END
+                                                                                                                                                                                                      ==============================-->
 @endsection
