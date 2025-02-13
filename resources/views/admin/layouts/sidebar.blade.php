@@ -137,6 +137,10 @@
                 </ul>
             </li>
 
+            <li><a class="nav-link {{ setActive(['admin.advertisement.*']) }}"
+                    href="{{ route('admin.advertisement.index') }}"><i class="fas fa-ad"></i>
+                    <span>Advertisement</span></a></li>
+
             <li
                 class="dropdown {{ setActive([
                     'admin.footer-info.index',
@@ -162,16 +166,9 @@
                 </ul>
             </li>
 
-
-            {{-- <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li> --}}
+            <li><a class="nav-link {{ setActive(['admin.subscribers.*']) }}"
+                    href="{{ route('admin.subscribers.index') }}"><i class="fas fa-user"></i>
+                    <span>Subscribers</span></a></li>
 
             <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i>
                     <span>Settings</span></a></li>
