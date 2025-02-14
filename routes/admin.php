@@ -142,6 +142,7 @@ Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'ca
 /** Vendor Request Routes */
 Route::get('vendor-requests', [VendorRequestController::class, 'index'])->name('vendor-requests.index');
 Route::get('vendor-requests/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-requests.show');
+Route::put('vendor-requests/{id}/change-status', [VendorRequestController::class, 'changeStatus'])->name('vendor-requests.change-status');
 
 /** Footer Routes */
 Route::resource('footer-info', FooterInfoController::class);
