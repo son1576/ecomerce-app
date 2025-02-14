@@ -9,12 +9,15 @@ use App\Http\Controllers\Frontend\FlashSaleController as FrontendFlashSaleContro
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
-use App\Http\Controllers\Frontend\PaymentController ;
+use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\Frontend\UserVendorResquestController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -65,15 +68,32 @@ Route::get('cart/sidebar-product-total', [CartController::class, 'cartTotal'])->
 Route::get('apply-coupon', [CartController::class, 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->name('coupon-calculation');
 
+/** Vendor Page Routes */
+Route::get('vendor', [HomeController::class, 'vendorPage'])->name('vendor.index');
+Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
+
 /** Newsletter routes */
 Route::post('newsletter-request', [NewsletterController::class, 'newsLetterRequset'])->name('newsletter-request');
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 
-
 /** add product in wishlist */
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
 
+/** Product Track Route */
+Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
 
+/** About Page */
+Route::get('about', [PageController::class, 'about'])->name('about');
+
+/** Terms And Codition Page Route */
+Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions');
+
+/** Contact Route */
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
+
+
+/** Customer Routes */
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
@@ -93,6 +113,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     /** Reviews Routes */
     Route::get('reviews', [ReviewController::class, 'index'])->name('review.index');
+
+    /** Vendor request route */
+    Route::get('vendor-request', [UserVendorResquestController::class, 'index'])->name('vendor-request.index');
+    Route::post('vendor-request', [UserVendorResquestController::class, 'create'])->name('vendor-request.create');
+
+
 
     /** Checkout Routes */
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
@@ -117,4 +143,3 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     /** COD routes */
     Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
 });
-

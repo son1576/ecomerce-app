@@ -93,7 +93,7 @@
                                                 @else
                                                     <i class="far fa-star"></i>
                                                 @endif
-                                            @endforwith('reviews')->
+                                            @endfor
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">{{ $settings->currency_icon }}{{ $item->offer_price }}

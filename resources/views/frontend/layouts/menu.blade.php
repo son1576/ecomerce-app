@@ -25,7 +25,8 @@
                         ----------------------- --}}
                         @foreach ($categories as $category)
                             <li><a class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}"
-                                    href="{{ route('products.index', ['category' => $category->slug]) }}"><i class="{{ $category->icon }}"></i>
+                                    href="{{ route('products.index', ['category' => $category->slug]) }}"><i
+                                        class="{{ $category->icon }}"></i>
                                     {{ $category->name }}
                                 </a>
                                 @if (count($category->subCategories) > 0)
@@ -34,7 +35,8 @@
                                             LOOP THROUGH SUB CATEGORIES
                                         --------------------------- --}}
                                         @foreach ($category->subCategories as $subCategory)
-                                            <li><a href="{{ route('products.index', ['subcategory' => $subCategory->slug]) }}">{{ $subCategory->name }}<i
+                                            <li><a
+                                                    href="{{ route('products.index', ['subcategory' => $subCategory->slug]) }}">{{ $subCategory->name }}<i
                                                         class="{{ count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : '' }}"></i></a>
                                                 @if (count($subCategory->childCategories) > 0)
                                                     <ul class="wsus__sub_category">
@@ -42,7 +44,9 @@
                                                             LOOP THROUGH CHILD CATEGORIES
                                                         ------------------------------ --}}
                                                         @foreach ($subCategory->childCategories as $childCategory)
-                                                            <li><a href="{{ route('products.index', ['childcategory' => $childCategory->slug]) }}">{{ $subCategory->name }}</a> </li>
+                                                            <li><a
+                                                                    href="{{ route('products.index', ['childcategory' => $childCategory->slug]) }}">{{ $subCategory->name }}</a>
+                                                            </li>
                                                         @endforeach
 
                                                     </ul>
@@ -126,7 +130,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="vendor.html">vendor</a></li>
+                        <li><a href="{{ route('vendor.index') }}">vendor</a></li>
                         <li><a href="blog.html">blog</a></li>
                         <li><a href="daily_deals.html">campain</a></li>
                         <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
@@ -146,11 +150,11 @@
                                 <li><a href="brands.html">brands</a></li>
                             </ul>
                         </li>
-                        <li><a href="track_order.html">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="contact.html">contact</a></li>
+                        <li><a href="{{ route('contact') }}">contact</a></li>
                         <li><a href="dsahboard.html">my account</a></li>
                         <li><a href="{{ route('login') }}">login</a></li>
                     </ul>
@@ -261,7 +265,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="track_order.html">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
                 </div>
