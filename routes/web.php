@@ -81,6 +81,8 @@ Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])
 /** About Page */
 Route::get('about', [PageController::class, 'about'])->name('about');
 
+/** Terms And Codition Page Route */
+Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions');
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');

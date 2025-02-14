@@ -31,6 +31,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
+use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
@@ -163,6 +164,9 @@ Route::put('vendor-condition/update', [VendorConditionController::class, 'update
 Route::get('about', [AboutController::class, 'index'])->name('about.index');
 Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
 
+/** Terms And Condition Page */
+Route::get('terms-and-conditions', [TermsAndConditionController::class, 'index'])->name('terms-and-conditions.index');
+Route::put('terms-and-conditions/update', [TermsAndConditionController::class, 'update'])->name('terms-and-conditions.update');
 
 /** Footer Routes */
 Route::resource('footer-info', FooterInfoController::class);
