@@ -30,6 +30,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\VendorRequestController;
 use App\Models\FooterGridTwo;
 use Illuminate\Support\Facades\Route;
 
@@ -138,6 +139,9 @@ Route::put('advertisement/homepage-banner-section-four', [AdvertisementControlle
 Route::put('advertisement/productpage-banner', [AdvertisementController::class, 'productPageBanner'])->name('productpage-banner');
 Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'cartPageBanner'])->name('cartpage-banner');
 
+/** Vendor Request Routes */
+Route::get('vendor-requests', [VendorRequestController::class, 'index'])->name('vendor-requests.index');
+Route::get('vendor-requests/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-requests.show');
 
 /** Footer Routes */
 Route::resource('footer-info', FooterInfoController::class);
