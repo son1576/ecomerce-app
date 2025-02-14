@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -77,6 +78,9 @@ Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLette
 
 /** add product in wishlist */
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+
+/** Product Track Route */
+Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
 
 /** About Page */
 Route::get('about', [PageController::class, 'about'])->name('about');

@@ -150,7 +150,7 @@
                                 <li><a href="brands.html">brands</a></li>
                             </ul>
                         </li>
-                        <li><a href="track_order.html">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
@@ -265,7 +265,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="track_order.html">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
                 </div>
