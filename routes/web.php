@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\FlashSaleController as FrontendFlashSaleContro
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
@@ -70,14 +71,15 @@ Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->
 Route::get('vendor', [HomeController::class, 'vendorPage'])->name('vendor.index');
 Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
 
-
 /** Newsletter routes */
 Route::post('newsletter-request', [NewsletterController::class, 'newsLetterRequset'])->name('newsletter-request');
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 
-
 /** add product in wishlist */
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+
+/** About Page */
+Route::get('about', [PageController::class, 'about'])->name('about');
 
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
@@ -103,6 +105,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     /** Vendor request route */
     Route::get('vendor-request', [UserVendorResquestController::class, 'index'])->name('vendor-request.index');
     Route::post('vendor-request', [UserVendorResquestController::class, 'create'])->name('vendor-request.create');
+
 
 
     /** Checkout Routes */
