@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CodSettingController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\FooterGridTwoController;
@@ -143,6 +144,11 @@ Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'ca
 Route::get('vendor-requests', [VendorRequestController::class, 'index'])->name('vendor-requests.index');
 Route::get('vendor-requests/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-requests.show');
 Route::put('vendor-requests/{id}/change-status', [VendorRequestController::class, 'changeStatus'])->name('vendor-requests.change-status');
+
+/** Customer List Routes */
+Route::get('customer', [CustomerListController::class, 'index'])->name('customer.index');
+Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
+
 
 /** Footer Routes */
 Route::resource('footer-info', FooterInfoController::class);
