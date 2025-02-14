@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminReviewController;
@@ -153,6 +154,11 @@ Route::put('vendor-requests/{id}/change-status', [VendorRequestController::class
 /** Customer List Routes */
 Route::get('customer', [CustomerListController::class, 'index'])->name('customer.index');
 Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
+
+/** Admin List Routes */
+Route::get('admin-list', [AdminListController::class, 'index'])->name('admin-list.index');
+Route::put('admin-list/status-change', [AdminListController::class, 'changeStatus'])->name('admin-list.status-change');
+Route::delete('admin-list/{id}', [AdminListController::class, 'destory'])->name('admin-list.destory');
 
 /** Mange User Routes */
 Route::get('manage-user', [ManageUserController::class, 'index'])->name('manage-user.index');
